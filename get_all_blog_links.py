@@ -3,31 +3,37 @@ import os
 # 这里必须要加一个单引号，防windows的一些问题...
 
 script_paths=   [   
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365ColorfulLife\source\_posts\get_blog_links.py",
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365ColorfulLife2\source\_posts\get_blog_links.py",
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365ColorfulLife3\source\_posts\get_blog_links.py",
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365TinyMoment\source\_posts\get_blog_links.py",
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365Blog\Linkeer365.github.io\source\_posts\get_blog_links.py",
+                    r"D:\Blogs\Linkeer365ColorfulLife\source\_posts\get_blog_links.py",
+                    r"D:\Blogs\Linkeer365ColorfulLife2\source\_posts\get_blog_links.py",
+                    r"D:\Blogs\Linkeer365ColorfulLife3\source\_posts\get_blog_links.py",
+                    r"D:\Blogs\Linkeer365TinyMoment\source\_posts\get_blog_links.py",
+                    r"D:\Blogs\Linkeer365TinyMoment2\source\_posts\get_blog_links.py",
+                    # r"D:\Blogs\Linkeer365Blog\Linkeer365.github.io\source\_posts\get_blog_links.py",
                 ]
 
 script_dirs=   [   
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365ColorfulLife\source\_posts",
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365ColorfulLife2\source\_posts",
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365ColorfulLife3\source\_posts",
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365TinyMoment\source\_posts",
-                    r"D:\OneDrive - CUHK-Shenzhen\Linkeer365Blog\Linkeer365.github.io\source\_posts",
+                    r"D:\Blogs\Linkeer365ColorfulLife\source\_posts",
+                    r"D:\Blogs\Linkeer365ColorfulLife2\source\_posts",
+                    r"D:\Blogs\Linkeer365ColorfulLife3\source\_posts",
+                    r"D:\Blogs\Linkeer365TinyMoment\source\_posts",
+                    r"D:\Blogs\Linkeer365TinyMoment2\source\_posts",
+                    # r"D:\Blogs\Linkeer365Blog\Linkeer365.github.io\source\_posts",
                 ]
 
 
-paths=[ r"D:\OneDrive - CUHK-Shenzhen\Linkeer365ColorfulLife\source\_posts\all_links.txt",
-        r"D:\OneDrive - CUHK-Shenzhen\Linkeer365ColorfulLife2\source\_posts\all_links.txt",
-        r"D:\OneDrive - CUHK-Shenzhen\Linkeer365ColorfulLife3\source\_posts\all_links.txt",
-        r"D:\OneDrive - CUHK-Shenzhen\Linkeer365TinyMoment\source\_posts\all_links.txt",
-        r"D:\OneDrive - CUHK-Shenzhen\Linkeer365Blog\Linkeer365.github.io\source\_posts\all_links.txt",
+paths=[ r"D:\Blogs\Linkeer365ColorfulLife\source\_posts\all_links.txt",
+        r"D:\Blogs\Linkeer365ColorfulLife2\source\_posts\all_links.txt",
+        r"D:\Blogs\Linkeer365ColorfulLife3\source\_posts\all_links.txt",
+        r"D:\Blogs\Linkeer365TinyMoment\source\_posts\all_links.txt",
+        r"D:\Blogs\Linkeer365TinyMoment2\source\_posts\all_links.txt",
+        # r"D:\Blogs\Linkeer365Blog\Linkeer365.github.io\source\_posts\all_links.txt",
         ]
 
-target_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\outer_links.txt"
-target_path2=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\outer_links2.txt"
+linkeer_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\linkeer_links.txt"
+inside_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\inside_links.txt"
+
+# target_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\outer_links.txt"
+# target_path2=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\outer_links2.txt"
 
 for idx in range(len(script_dirs)):
     script_dir=script_dirs[idx]
@@ -44,13 +50,31 @@ for path in paths:
 
 print(links)
 
-links_s="\n".join(links)+"\n"
+linkeers=[]
+insides=[]
 
-with open(target_path,"w",encoding="utf-8") as f:
-    f.write(links_s)
+for link in links:
+    if link.startswith("https://linkeer365.github.io/"):
+        linkeers.append(link)
+    else:
+        insides.append(link)
 
-with open(target_path2,"a",encoding="utf-8") as f:
-    f.write(links_s)
+linkeers_s="\n".join(linkeers)+"\n"
+insides_s="\n".join(insides)+"\n"
+
+with open(linkeer_path,"w",encoding="utf-8") as f:
+    f.write(linkeers_s)
+
+with open(inside_path,"w",encoding="utf-8") as f:
+    f.write(insides_s)
+
+# links_s="\n".join(links)+"\n"
+#
+# with open(target_path,"w",encoding="utf-8") as f:
+#     f.write(links_s)
+#
+# with open(target_path2,"a",encoding="utf-8") as f:
+#     f.write(links_s)
 
 print("done.")
 # for link in links:
