@@ -2,6 +2,8 @@ import os
 
 # 这里必须要加一个单引号，防windows的一些问题...
 
+origin_dir=os.getcwd()
+
 script_paths=   [   
                     r"D:\Blogs\Linkeer365ColorfulLife\source\_posts\get_blog_links.py",
                     r"D:\Blogs\Linkeer365ColorfulLife2\source\_posts\get_blog_links.py",
@@ -29,8 +31,11 @@ paths=[ r"D:\Blogs\Linkeer365ColorfulLife\source\_posts\all_links.txt",
         # r"D:\Blogs\Linkeer365Blog\Linkeer365.github.io\source\_posts\all_links.txt",
         ]
 
-linkeer_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\linkeer_links.txt"
-inside_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\inside_links.txt"
+# linkeer_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\linkeer_links.txt"
+
+linkeer_path=r".\linkeer_links.txt"
+# inside_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\inside_links.txt"
+inside_path=r".\inside_links.txt"
 
 # target_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\outer_links.txt"
 # target_path2=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\outer_links2.txt"
@@ -61,6 +66,8 @@ for link in links:
 
 linkeers_s="\n".join(linkeers)+"\n"
 insides_s="\n".join(insides)+"\n"
+
+os.chdir(origin_dir)
 
 with open(linkeer_path,"w",encoding="utf-8") as f:
     f.write(linkeers_s)
