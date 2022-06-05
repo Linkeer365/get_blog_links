@@ -2,6 +2,12 @@ import os
 
 # 这里必须要加一个单引号，防windows的一些问题...
 
+paths=["./posts.db","./linkeer_links.txt","./inside_links.txt","./not-yet.txt"]
+
+for path2 in paths:
+    if os.path.exists(path2):
+        os.remove(path2)
+
 origin_dir=os.getcwd()
 
 script_paths=   [   
@@ -37,6 +43,9 @@ linkeer_path=r".\linkeer_links.txt"
 # inside_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\inside_links.txt"
 inside_path=r".\inside_links.txt"
 
+inside_path2=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\inside_links.txt"
+linkeer_path2=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\linkeer_links.txt"
+
 # target_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\outer_links.txt"
 # target_path2=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\outer_links2.txt"
 
@@ -59,7 +68,7 @@ linkeers=[]
 insides=[]
 
 for link in links:
-    if link.startswith("https://linkeer365.github.io/"):
+    if "linkeer365.github.io" in link:
         linkeers.append(link)
     else:
         insides.append(link)
@@ -74,6 +83,12 @@ with open(linkeer_path,"w",encoding="utf-8") as f:
 
 with open(inside_path,"w",encoding="utf-8") as f:
     f.write(insides_s)
+
+with open(inside_path2,"w",encoding="utf-8") as f:
+    f.write(insides_s)
+
+with open(linkeer_path2,"w",encoding="utf-8") as f:
+    f.write(linkeers_s)
 
 # links_s="\n".join(links)+"\n"
 #
