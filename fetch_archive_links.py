@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import datetime
+import sys
 
 webpage_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\webpage.db"
 webpage_conn=sqlite3.connect(webpage_path)
@@ -12,22 +13,34 @@ post_cursor=post_conn.cursor()
 
 link_versions=webpage_cursor.execute("select link,versions from wp where link like \"%{}%\"".format("linkeer365.github.io")).fetchall()
 
+# print(link_versions)
+# sys.exit(0)
+
 name_title_abbrs=post_cursor.execute("select project_name,title,abbr_num from pt").fetchall()
 
 name_title_versions=[]
 
+# print(name_title_abbrs)
+
 for name,title,abbr in name_title_abbrs:
     for link,versions in link_versions:
         tail=link.split("/")[-2]
+        # print("tail:",tail)
         if abbr == tail:
             pack=(name,title,versions)
             name_title_versions.append(pack)
             break
+        else:
+            # print(name)
+            continue
 
 index_file_path_patt="D://Blogs//{}//source//_posts//links//index.md"
 post_file_path_patt="D://Blogs//{}//source//_posts//{}.md"
 
 new_packs=[]
+
+# print(name_title_versions)
+
 for name,title,versions in name_title_versions:
     title=title.replace("\"","")
     pack=name,title,versions
@@ -41,6 +54,7 @@ for name,title,versions in name_title_versions:
             new_pack=(*pack,date)
             new_packs.append(new_pack)
 
+
 new_packs=sorted(new_packs,key=lambda x:datetime.strptime(x[3], "%Y-%m-%d %H:%M:%S"),reverse=True)
 
 with open(r"D:\get_blog_links\needing_words.txt","r",encoding="utf-8") as f:
@@ -51,11 +65,15 @@ archive_lines=[]
 
 path_lines_dict=dict()
 
+# print(new_packs)
+
 for name,title,versions,date in new_packs:
     index_file_path=index_file_path_patt.format(name)
-    archive_line="| {} | {} | `{}` |\n".format(date,title,versions)
+    archive_line="{}    《{}》 \n`{}`\n\n".format(date,title,versions)
     archive_lines.append(archive_line)
     path_lines_dict[index_file_path]=archive_lines
+
+
 
 for path,lines in path_lines_dict.items():
     newlines=[]

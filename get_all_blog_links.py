@@ -11,12 +11,13 @@ for path2 in paths:
 origin_dir=os.getcwd()
 
 script_paths=   [   
-                    r"D:\Blogs\Linkeer365ColorfulLife\source\_posts\get_blog_links.py",
-                    r"D:\Blogs\Linkeer365ColorfulLife2\source\_posts\get_blog_links.py",
-                    r"D:\Blogs\Linkeer365ColorfulLife3\source\_posts\get_blog_links.py",
-                    r"D:\Blogs\Linkeer365TinyMoment\source\_posts\get_blog_links.py",
-                    r"D:\Blogs\Linkeer365TinyMoment2\source\_posts\get_blog_links.py",
-                    # r"D:\Blogs\Linkeer365Blog\Linkeer365.github.io\source\_posts\get_blog_links.py",
+                    r"D:\Blogs\Linkeer365ColorfulLife\source\_posts\get_blog_links_final.py",
+                    r"D:\Blogs\Linkeer365ColorfulLife2\source\_posts\get_blog_links_final.py",
+                    r"D:\Blogs\Linkeer365ColorfulLife3\source\_posts\get_blog_links_final.py",
+                    r"D:\Blogs\Linkeer365TinyMoment\source\_posts\get_blog_links_final.py",
+                    r"D:\Blogs\Linkeer365TinyMoment2\source\_posts\get_blog_links_final.py",
+                    r"D:\Blogs\Linkeer365.github.io\source\_posts\get_blog_links_final.py",
+                    r"D:\Blogs\Linkeer365BookReview\source\_posts\get_blog_links_final.py",
                 ]
 
 script_dirs=   [   
@@ -25,7 +26,8 @@ script_dirs=   [
                     r"D:\Blogs\Linkeer365ColorfulLife3\source\_posts",
                     r"D:\Blogs\Linkeer365TinyMoment\source\_posts",
                     r"D:\Blogs\Linkeer365TinyMoment2\source\_posts",
-                    # r"D:\Blogs\Linkeer365Blog\Linkeer365.github.io\source\_posts",
+                    r"D:\Blogs\Linkeer365.github.io\source\_posts",
+                    r"D:\Blogs\Linkeer365BookReview\source\_posts",
                 ]
 
 
@@ -34,8 +36,10 @@ paths=[ r"D:\Blogs\Linkeer365ColorfulLife\source\_posts\all_links.txt",
         r"D:\Blogs\Linkeer365ColorfulLife3\source\_posts\all_links.txt",
         r"D:\Blogs\Linkeer365TinyMoment\source\_posts\all_links.txt",
         r"D:\Blogs\Linkeer365TinyMoment2\source\_posts\all_links.txt",
-        # r"D:\Blogs\Linkeer365Blog\Linkeer365.github.io\source\_posts\all_links.txt",
+        r"D:\Blogs\Linkeer365.github.io\source\_posts\all_links.txt",
+        r"D:\Blogs\Linkeer365BookReview\source\_posts\all_links.txt",
         ]
+
 
 # linkeer_path=r"D:\upload2ArchiveOrg_UsingArchivenow\ArchiveMePlease\linkeer_links.txt"
 
@@ -54,7 +58,7 @@ for idx in range(len(script_dirs)):
     # script_path=script_paths[idx]
     os.chdir(script_dir)
     print(script_dir)
-    os.system("python ./get_blog_links.py")
+    os.system("python ./get_blog_links_final.py")
 
 links=[]
 
@@ -72,6 +76,17 @@ for link in links:
         linkeers.append(link)
     else:
         insides.append(link)
+
+# index_links=["https://linkeer365.github.io/Linkeer365ColorfulLife3/links/",
+#              "https://linkeer365.github.io/Linkeer365ColorfulLife2/links/",
+#              "https://linkeer365.github.io/Linkeer365ColorfulLife/links/",
+#              "https://linkeer365.github.io/Linkeer365TinyMoment2/links/",
+#              "https://linkeer365.github.io/Linkeer365TinyMoment/links/",
+#              "https://linkeer365.github.io/Linkeer365BookReview/links/",
+#              "https://linkeer365.github.io/links/",
+#             ]
+
+# linkeers.extend(index_links)
 
 linkeers_s="\n".join(linkeers)+"\n"
 insides_s="\n".join(insides)+"\n"
